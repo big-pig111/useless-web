@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USELESS WEBSITE</title>
+    <style>
+        /* Critical inline styles - parsed immediately */
+        body { margin: 0; padding: 0; height: 100vh; overflow: hidden; position: relative; }
+        .container { position: relative; width: 100%; height: 100%; }
+        .website-content { width: 100%; height: 100%; }
+        iframe { width: 100%; height: 100%; border: none; opacity: 0; }
+        .bottom-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+            opacity: 0; /* Both start invisible */
+        }
+        .logo-section { display: flex; align-items: center; gap: 15px; }
+        .project-logo { height: 60px; width: auto; background: #ddd; border-radius: 4px; }
+        .project-name { font: bold 22px Arial, sans-serif; color: #333; }
+        .center-ca { 
+            font: 18px Arial, sans-serif; 
+            color: #666; 
+            position: absolute; /* Positioned absolutely in center */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .x-link { text-decoration: none; color: #000; font: bold 24px Arial, sans-serif; transition: color 0.3s; }
+        .x-link:hover { color: #1DA1F2; }
+        /* Synchronized reveal class */
+        .visible { opacity: 1 !important; transition: opacity 0.1s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="website-content">
+            <iframe id="embeddedSite" src="https://theuselessweb.com/"></iframe>
+        </div>
+
+        <div class="bottom-bar">
+            <div class="logo-section">
+                <img src="1.png" alt="Project Logo" class="project-logo">
+                <div class="project-name">USELESS WEBSITE</div>
+            </div>
+            
+            <div class="center-ca">ca</div> <!-- "ca" in center -->
+            
+            <a href="https://x.com/" target="_blank" class="x-link">X</a>
+        </div>
+    </div>
+
+    <script>
+        const iframe = document.getElementById('embeddedSite');
+        const bottomBar = document.querySelector('.bottom-bar');
+        let revealed = false;
+
+        // Ultra-precise simultaneous reveal
+        function revealTogether() {
+            if (revealed) return;
+            revealed = true;
+            // Trigger both at the same animation frame
+            requestAnimationFrame(() => {
+                iframe.classList.add('visible');
+                bottomBar.classList.add('visible');
+            });
+        }
+
+        // Triple redundancy triggers for perfect sync
+        iframe.addEventListener('load', revealTogether);
+        iframe.addEventListener('readystatechange', () => {
+            if (iframe.readyState === 'complete') revealTogether();
+        });
+
+        // Fallback: Micro-delay safety net (faster than human perception)
+        setTimeout(revealTogether, 300);
+    </script>
+</body>
+</html>
